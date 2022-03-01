@@ -1,7 +1,12 @@
+using tiendapersonal.Servicios;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//CONFIGURANDO MI SERVICIO PARA TIPOSCUENTAS
+builder.Services.AddTransient<IRepositorioTiposCuentas, RepositorioTipoCuentas>();
 
 var app = builder.Build();
 

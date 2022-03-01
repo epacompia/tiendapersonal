@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using tiendapersonal.Validaciones;
 
 namespace tiendapersonal.Models
@@ -9,6 +10,8 @@ namespace tiendapersonal.Models
 
         [Required(ErrorMessage ="El campo {0} es requerido")]
         //[PrimeraLetraMayuscula]
+
+        [Remote(action:"VerificarExisteTipoCuenta",controller:"TiposCuentas")]
         public string Nombre { get; set; }
         public int UsuarioId { get; set; }
         public int Orden { get; set; }
