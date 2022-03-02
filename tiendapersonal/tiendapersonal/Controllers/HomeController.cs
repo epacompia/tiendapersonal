@@ -23,6 +23,14 @@ namespace tiendapersonal.Controllers
             return View();
         }
 
+        //CREANDO MI ACCION NOENCONTRADO
+        public IActionResult NoEncontrado()
+        {
+            return View();
+        }
+
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
