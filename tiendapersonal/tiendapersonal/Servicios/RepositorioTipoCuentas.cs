@@ -9,6 +9,7 @@ namespace tiendapersonal.Servicios
     {
         Task Crear(TipoCuenta tipoCuenta);
         Task<bool> Existe(string nombre, int usuarioId);
+        Task<IEnumerable<TipoCuenta>> Obtener(int usuarioId);
     }
 
     public class RepositorioTipoCuentas:IRepositorioTiposCuentas
@@ -45,5 +46,17 @@ namespace tiendapersonal.Servicios
                                                                     new { nombre, usuarioId});
             return existe == 1;
         }
+
+
+        //METODO PARA LISTADO DE TIPO CUENTAS
+        public async Task<IEnumerable<TipoCuenta>> Obtener (int usuarioId)
+        {
+            using var connection= new SqlConnection(connectionString);
+            return await connection.QueryAsync<TipoCuenta>(@"select Id, Nombre,Orden
+                                    from TiposCuentas where UsuarioId=@usuarioId",new {usuarioId });
+        }
+
+
+
     }
 }

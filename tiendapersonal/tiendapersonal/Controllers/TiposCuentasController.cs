@@ -16,6 +16,16 @@ namespace tiendapersonal.Controllers
             this.repositorioTiposCuentas = repositorioTiposCuentas;
         }
 
+        //LISTADO DE TIPOCUENTA LLAMADO INDEX
+        public async Task<IActionResult> Index()
+        {
+            var usuarioId = 1;
+            var tiposCuentas = await repositorioTiposCuentas.Obtener(usuarioId);
+            return View(tiposCuentas);
+        }
+
+
+
 
         public IActionResult Crear()
         {
@@ -44,7 +54,7 @@ namespace tiendapersonal.Controllers
 
 
             await repositorioTiposCuentas.Crear(tipoCuenta);
-            return View();
+            return RedirectToAction("Index");
         }
 
 
