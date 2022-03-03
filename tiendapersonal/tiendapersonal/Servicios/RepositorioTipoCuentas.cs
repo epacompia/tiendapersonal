@@ -8,6 +8,7 @@ namespace tiendapersonal.Servicios
     public interface IRepositorioTiposCuentas
     {
         Task Actualizar(TipoCuenta tipoCuenta);
+        Task Borrar(int id);
         Task Crear(TipoCuenta tipoCuenta);
         Task<bool> Existe(string nombre, int usuarioId);
         Task<IEnumerable<TipoCuenta>> Obtener(int usuarioId);
@@ -75,6 +76,14 @@ namespace tiendapersonal.Servicios
             return await connection.QueryFirstOrDefaultAsync<TipoCuenta>(@"select Id,Nombre,Orden from TiposCuentas
                                                                 where Id=@Id and UsuarioId=@usuarioId", new { id, usuarioId });
         }
+
+        //METODO PARA BORRAR REGISTRO
+        public async Task Borrar(int id)
+        {
+            using var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync("DELETE TiposCuentas where Id=@Id", new {id});
+        }
+
 
     }
 }
