@@ -131,6 +131,14 @@ namespace tiendapersonal.Controllers
         }
 
 
+        //CREO EL CODIGO PARA ORDENARLO CON AJAX Y JSON
+        [HttpPost]
+        public async Task<IActionResult> Ordenar([FromBody] int[] ids)
+        {
+            return Ok();
+        }
+
+
 
 
     }
